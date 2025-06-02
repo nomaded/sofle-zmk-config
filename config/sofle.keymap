@@ -1,3 +1,4 @@
+// -*- mode: c++ -*-
 /*
  * Copyright (c) 2020 The ZMK Contributors
  *
@@ -8,26 +9,297 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/rgb.h>
+#include <dt-bindings/zmk/backlight.h>
 #include <dt-bindings/zmk/ext_power.h>
 
-#define BASE 0
-#define LOWER 1
-#define RAISE 2
-#define ADJUST 3
+// Each layer gets a name for readability, which is then used in the keymap
+// matrix below. The underscores don't mean anything - you can have a layer
+// called STUFF or any other name. Layer names don't all need to be of the
+// same length, obviously, and you can also skip them entirely and just use
+// numbers.
+#define _DVORAK 0
+#define _QWERTY 1
+#define _PUNCT_DV 2
+#define _PUNCT_QW 3
+#define _NAV_DV 4
+#define _NAV_QW 5
+#define _RESET_NUM 6
+
+// Helpful defines
+// Layer-related
+#define TOG_RST &tog _RESET_NUM
+#define TOG_QW &tog _QWERTY
+#define TD_RST &td_rst          // Tap dance Reset/Num layer
+#define TD_QW &td_qw            // Tap dance Qwerty layer
+#define SL_NAVD &sl _NAV_DV     // Sticky layer DV Nav layer
+#define SL_NAVQ &sl _NAV_QW     // Sticky layer QW Nav layer
+#define SL_PUND &sl _PUNCT_DV   // Sticky layer DV Punct layer
+#define SL_PUNQ &sl _PUNCT_QW   // Sticky layer DV Punct layer
+#define MO_NAVD &mo _NAV_DV     // Momentary DV Nav layer
+#define MO_NAVQ &mo _NAV_QW     // Momentary QW Nav layer
+#define MO_PUND &sl _PUNCT_DV   // Momentary DV Punct layer
+#define MO_PUNQ &sl _PUNCT_QW   // Momentary QW Punct layer
+
+// Modifier-related
+#define CTL_ESC &bhm LCTL ESC
+#define GUI_ENT &bhm LGUI ENTER
+#define CTL_TAB &bhm LCTL TAB
+#define CTL_DEL &bhm LCTL DEL
+#define LSFT_SC &bhm LSFT SEMI
+#define LALT__Q &bhm LALT Q
+#define LCTL__J &bhm LCTL J
+#define LGUI__K &bhm LGUI K
+#define RGUI__M &bhm RGUI M
+#define RCTL__W &bhm RCTL W
+#define LALT__V &bhm LALT V
+#define RSFT__Z &bhm RSFT Z
+#define LSFT__Z &bhm LSFT Z
+#define LALT__X &bhm LALT X
+#define LCTL__C &bhm LCTL C
+#define LGUI__V &bhm LGUI V
+#define RGUI__M &bhm RGUI M
+#define RCTL_CM &bhm RCTL COMMA
+#define LALT_DT &bhm LALT DOT
+#define RSFT_SH &bhm RSFT FSLH
+
+// Time (ms) before sticky layer is released
+// matches QMK setting
+&sl {
+    release-after-ms = <1500>;
+};
+
+// Change behavior of caps_word to stop on modifier by setting
+// ignore-modifiers to false using /delete-property/
+// See: https://github.com/zmkfirmware/zmk/issues/1410
+&caps_word {
+    /delete-property/ ignore-modifiers;
+    continue-list = <UNDERSCORE MINUS BACKSPACE DELETE>;
+};
 
 / {
+    behaviors {
+        bhm: below_homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "BELOW_HOMEROW_MODS";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <250>;
+            bindings = <&kp>, <&kp>;
+        };
+        td_rst: tap_dance_reset_num_layer {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&none>, <&none>, <&tog _RESET_NUM>;
+        };
+        td_qw: tap_dance_qwerty_layer {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&none>, <&none>, <&tog _QWERTY>;
+        };
+    };
 
-   // Activate ADJUST layer by pressing raise and lower
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        adjust_layer {
-            if-layers = <LOWER RAISE>;
-            then-layer = <ADJUST>;
+    combos {
+        compatible = "zmk,combos";
+        caplk: combo_capslock {
+            timeout-ms = <150>;
+            key-positions = <36 47>;
+            bindings = <&kp CAPSLOCK>;
+        };
+        capwd: combo_capsword {
+            timeout-ms = <150>;
+            //key-positions = <19 24>;
+            //key-positions = <20 23>; // combo of Y and F for caps_word
+            //key-positions = <18 25>; // combo of DOT and C for caps_word
+            key-positions = <24 35>; // combo of CTL_ESC and MINUS for caps_word
+            bindings = <&caps_word>;
         };
     };
 
     keymap {
         compatible = "zmk,keymap";
+
+        dvorak {
+            display-name = "dvorak";
+//
+// default, dvorak in keyboard, qwerty in OS
+// ,-----------------------------------------.                ,-----------------------------------------.
+// | LAlt | 1 !  | 2 @  | 3 #  | 4 $  | 5 %  |                | 6 ^  | 7 &  | 8 *  | 9 (  | 0 )  | = +  |
+// |------+------+------+------+------+------|                |------+------+------+------+------+------|
+// | Tab  | ' "  | , <  | . >  | p P  | y Y  |                | f F  | g G  | c C  | r R  | l L  | / ?  |
+// |------+------+------+------+------+------|                | -----+------+------+------+------+------|
+// | C_Esc| a A  | o O  | e E  | u U  | i I  |                | d D  | h H  | t T  | n N  | s S  | - _  |
+// |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
+// | LShft| ; :  | q Q  | j J  | k K  | x X  | Mute |  | Pl/Pa| b B  | m M  | w W  | v V  | z Z  | RShft|
+// `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
+//               |td_rst|      | BkSp |slnavd| C_Tab|  | G_Ent|slpund| Space|      | td_qw|
+//               `----------------------------------'  `----------------------------------'
+            bindings = <
+// 0      1        2          3        4         5                              6        7          8        9        10       11
+&sk LALT  &kp N1   &kp N2     &kp N3   &kp N4    &kp N5                         &kp N6   &kp N7     &kp N8   &kp N9   &kp N0   &kp EQUAL
+// 12     13       14         15       16        17                             18       19         20       21       22       23
+&kp TAB   &kp SQT  &kp COMMA  &kp DOT  &kp P     &kp Y                          &kp F    &kp G      &kp C    &kp R    &kp L    &kp FSLH
+// 24     25       26         27       28        29                             30       31         32       33       34       35
+CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          &kp D    &kp H      &kp T    &kp N    &kp S    &kp MINUS
+// 36     37       38         39       40        41       53          54        42       43         44       45       46       47
+&kp LSFT  LSFT_SC  LALT__Q    LCTL__J  LGUI__K   &kp X    &kp C_MUTE  &kp C_PP  &kp B    RGUI__M    RCTL__W  LALT__V  RSFT__Z  &kp RSFT
+//                 48         49       50        51       52          55        56       57         58       59
+                   &td_rst    &none    &kp BKSP  SL_NAVD  CTL_TAB     GUI_ENT   SL_PUND  &kp SPACE  &none    &td_qw
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+        qwerty {
+            display-name = "qwerty";
+//
+// qwerty in keyboard, dvorak in OS
+// ,-----------------------------------------.                ,-----------------------------------------.
+// | LAlt | 1 !  | 2 @  | 3 #  | 4 $  | 5 %  |                | 6 ^  | 7 &  | 8 *  | 9 (  | 0 )  | = +  |
+// |------+------+------+------+------+------|                |------+------+------+------+------+------|
+// | Tab  | q Q  | w W  | e E  | r R  | t T  |                | y Y  | u U  | i I  | o O  | p P  | [ {  |
+// |------+------+------+------+------+------|                | -----+------+------+------+------+------|
+// | C_Esc| a A  | s S  | d D  | f F  | g G  |                | h H  | j J  | k K  | l L  | ; :  | ' "  |
+// |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
+// | LShft| z Z  | x X  | c C  | v V  | b B  | Mute |  | Pl/Pa| n N  | m M  | , <  | . >  | / ?  | RShft|
+// `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
+//               |td_rst|      | BkSp |slnavq| C_Tab|  | G_Ent|slpunq| Space|      | td_qw|
+//               `----------------------------------'  `----------------------------------'
+            bindings = <
+&trans  &trans   &trans   &trans   &trans    &trans                     &trans  &trans     &trans   &trans   &trans    &kp RBRC
+&trans  &kp Q    &kp W    &kp E    &kp R     &kp T                      &kp Y   &kp U      &kp I    &kp O    &kp P     &kp LBRC
+&trans  &kp A    &kp S    &kp D    &kp F     &kp G                      &kp H   &kp J      &kp K    &kp L    &kp SEMI  &kp SQT
+&trans  LSFT__Z  LALT__X  LCTL__C  LGUI__V   &kp B    &trans   &trans   &kp N   RGUI__M    RCTL_CM  LALT_DT  RSFT_SH   &kp RSFT
+                 &td_rst  &none    &trans    SL_NAVQ  &trans   &trans   SL_PUNQ &trans     &none    &td_qw
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+        punct_dv {
+            display-name = "punct_dv";
+//
+// punctpad, dvorak in keyboard, qwerty in OS
+// ,-----------------------------------------.                ,-----------------------------------------.
+// |      | F1   | F2   | F3   | F4   | F5   |                | F6   | F7   | F8   | F9   | F10  | F11  |
+// |------+------+------+------+------+------|                |------+------+------+------+------+------|
+// |      |      |      |      |      |      |                | `    | [    | ]    | {    | }    | F12  |
+// |------+------+------+------+------+------|                | -----+------+------+------+------+------|
+// | C_Esc|      |      |      |      | \    |                | /    | -    | _    | (    | )    | C_Esc|
+// |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
+// | LShft| Undo | Cut  | Copy | Paste|      | \    |  | /    | ~    | =    | +    | |    | ?    | RShft|
+// `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
+//               |      |      | Del  |monavd| G_Ent|  | C_Tab|slnavd| Space|      |      |
+//               `----------------------------------'  `----------------------------------'
+            bindings = <
+&none   &kp F1     &kp F2     &kp F3     &kp F4     &kp F5                      &kp F6     &kp F7     &kp F8     &kp F9    &kp F10    &kp F11
+&none   &none      &none      &none      &none      &none                       &kp GRAVE  &kp LBKT   &kp RBKT   &kp LBRC  &kp RBRC   &kp F12
+&trans  &none      &none      &none      &none      &kp BSLH                    &kp FSLH   &kp MINUS  &kp UNDER  &kp LPAR  &kp RPAR   CTL_ESC
+&trans  &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)  &none     &trans   &trans   &kp TILDE  &kp EQUAL  &kp PLUS   &xp PLUS  &kp QMARK  &trans
+                   &none      &none      &kp DEL    MO_NAVD   GUI_ENT  CTL_TAB  SL_NAVD    &kp SPC    &none      &none
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+        punct_qw {
+            display-name = "punct_qw";
+//
+// punctpad, qwerty in keyboard, dvorak in OS
+// ,-----------------------------------------.                ,-----------------------------------------.
+// |      | F1   | F2   | F3   | F4   | F5   |                | F6   | F7   | F8   | F9   | F10  | F11  |
+// |------+------+------+------+------+------|                |------+------+------+------+------+------|
+// |      |      |      |      |      |      |                | `    | -    | =    | _    | +    | F12  |
+// |------+------+------+------+------+------|                | -----+------+------+------+------+------|
+// | C_Esc|      |      |      |      | \    |                | [    | '    | "    | (    | )    | C_Esc|
+// |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
+// | LShft| Undo | Cut  | Copy | Paste|      | \    |  | [    | ~    | ]    | }    | |    | {    | RShft|
+// `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
+//               |      |      | Del  |monavq| G_Ent|  | C_Tab|slnavq| Space|      |      |
+//               `----------------------------------'  `----------------------------------'
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                     &trans    &trans     &trans     &trans     &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans                     &trans    &kp MINUS  &kp EQUAL  &kp UNDER  &kp PLUS  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                     &kp LBKT  &kp SQT    &kp DQT    &kp LPAR   &kp RPAR  &trans
+&trans  &trans  &trans  &trans  &trans  &trans   &trans  &kp LBKT  &trans    &kp RBKT   &kp RBRC   &trans     &kp LBRC  &trans
+                &none   &none   &trans  MO_NAVQ  &trans  &trans    SL_NAVQ   &kp SPC    &none      &none
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+        nav_dv {
+            display-name = "nav_dv";
+//
+// nav, dvorak in keyboard, qwerty in OS
+// ,-----------------------------------------.                ,-----------------------------------------.
+// |      | F1   | F2   | F3   | F4   | F5   |                | F6   | F7   | F8   | F9   | F10  | F11  |
+// |------+------+------+------+------+------|                |------+------+------+------+------+------|
+// |      |C(Hom)|      | Up   | PgUp |C(End)|                |      | Prev |Vol Dn|Vol Up| Next | F12  |
+// |------+------+------+------+------+------|                | -----+------+------+------+------+------|
+// | C_Esc| Home | Left | Down | Right| End  |                |      | Left | Down | Up   | Right| C_Esc|
+// |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
+// | LShft|      |      | Down | PgDn | Del  | \    |  | /    |      | Play | Mute | Eject|      | RShft|
+// `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
+//               |      |      | Space|slpund| G_Ent|  | C_Del|mopund| BkSp |      |      |
+//               `----------------------------------'  `----------------------------------'
+            bindings = <
+&none   &kp F1        &kp F2    &kp F3    &kp F4     &kp F5                         &kp F6   &kp F7      &kp F8        &kp F9        &kp F10     &kp F11
+&none   &kp LC(HOME)  &none     &kp UP    &kp PG_UP  &kp LC(END)                    &none    &kp C_PREV  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT  &kp F12
+&trans  &kp HOME      &kp LEFT  &kp DOWN  &kp RIGHT  &kp END                        &none    &kp LEFT    &kp DOWN      &kp UP        &kp RIGHT   &trans
+&trans  &none         &none     &kp DOWN  &kp PG_DN  &kp DEL      &trans   &trans   &none    &kp C_PP    &kp C_MUTE    &xp C_EJECT   &none       &trans
+                      &none     &none     &kp SPACE  SL_PUND      GUI_ENT  CTL_DEL  MO_PUND  &kp BSPC    &none         &none
+           >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+        nav_qw {
+            display-name = "nav_qw";
+//
+// nav, qwerty in keyboard, dvorak in OS
+// ,-----------------------------------------.                ,-----------------------------------------.
+// |      | F1   | F2   | F3   | F4   | F5   |                | F6   | F7   | F8   | F9   | F10  | F11  |
+// |------+------+------+------+------+------|                |------+------+------+------+------+------|
+// |      |C(Hom)|      | Up   | PgUp |C(End)|                |      | Prev |Vol Dn|Vol Up| Next | F12  |
+// |------+------+------+------+------+------|                | -----+------+------+------+------+------|
+// | C_Esc| Home | Left | Down | Right| End  |                |      | Left | Down | Up   | Right| C_Esc|
+// |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
+// | LShft|      |      | Down | PgDn | Del  | \    |  | [    |      | Play | Mute | Eject|      | RShft|
+// `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
+//               |      |      | Space|slpunq| G_Ent|  | C_Del|mopunq| BkSp |      |      |
+//               `----------------------------------'  `----------------------------------'
+            bindings = <
+&trans  &trans  &trans  &trans  &trans   &trans                     &trans    &trans    &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans   &trans                     &trans    &trans    &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans   &trans                     &kp LBKT  &trans    &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans   &trans   &trans  &kp LBKT  &trans    &trans    &trans  &trans  &trans  &trans
+                &trans  &trans  &trans   SL_PUNQ  &trans  &trans    MO_PUND   &trans    &trans  &trans
+           >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+        reset_numpad {
+            display-name = "reset_numpad";
+//
+// reset, and numpad
+// ,-----------------------------------------.                ,-----------------------------------------.
+// | BtClr| BtSl0| BtSl1| BtSl2| BtSl3| BtSl4|                |      | NmLk | Np / | Np * | Np - | ScrLk|
+// |------+------+------+------+------+------|                |------+------+------+------+------+------|
+// |ExtPwr|RgbHud|RgbHui|RgbSad|RgbSai|RgbEff|                |      | Np 7 | Np 8 | Np 9 | Np + |PrtScn|
+// |------+------+------+------+------+------|                | -----+------+------+------+------+------|
+// |      |RgbBrd|RgbBri|RgbSpd|RgbSpi|RgbEfr|                |      | Np 4 | Np 5 | Np 6 | Np = | Pause|
+// |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
+// | Reset|      |      |      |      |      |RgbTog|  |      | Np 0 | Np 1 | Np 2 | Np 3 | Np . | Reset|
+// `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
+//               |td_rst|      |      |      |      |  | NpEnt| Np 0 | Space|      |      |
+//               `----------------------------------'  `----------------------------------'
+            bindings = <
+&bt BT_CLR         &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                                    &none      &kp KP_NLCK  &kp KP_SLASH  &kp KP_ASTERISK  &kp KP_MINUS  &kp SLCK
+&ext_power EP_TOG  &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &rgb_ug RGB_EFF                                 &none      &kp KP_N7    &kp KP_N8     &kp KP_N9        &kp KP_PLUS   &kp PSCRN
+&none              &rgb_ug RGB_BRD  &rgb_ug RGB_BRI  &rgb_ug RGB_SPD  &rgb_ug RGB_SPI  &rgb_ug RGB_EFR                                 &none      &kp KP_N4    &kp KP_N5     &kp KP_N6        &kp KP_EQUAL  &kp PAUSE_BREAK
+&bootloader        &none            &none            &none            &none            &none            &rgb_ug RGB_TOG  &none         &kp KP_N0  &kp KP_N1    &kp KP_N2     &xp KP_N3        &kp KP_DOT    &bootloader
+                                    TOG_RST          &none            &none            &none            &none            &kp KP_ENTER  &kp KP_N0  &kp BSPC     &none         &none
+            >;
+        };
+/* default sofle keymap
 
         default_layer {
             display-name = "default";
@@ -103,6 +375,7 @@
                                   &none           &none           &none           &none            &none           &none  &none &none &none &none
             >;
         };
+*/
 
     };
 };
