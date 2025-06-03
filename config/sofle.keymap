@@ -90,13 +90,13 @@
         td_rst: tap_dance_reset_num_layer {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <500>;
             bindings = <&none>, <&none>, <&tog _RESET_NUM>;
         };
         td_qw: tap_dance_qwerty_layer {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <500>;
             bindings = <&none>, <&none>, <&tog _QWERTY>;
         };
     };
@@ -146,7 +146,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 // 36     37       38         39       40        41       53          54        42       43         44       45       46       47
 &kp LSFT  LSFT_SC  LALT__Q    LCTL__J  LGUI__K   &kp X    &kp C_MUTE  &kp C_PP  &kp B    RGUI__M    RCTL__W  LALT__V  RSFT__Z  &kp RSFT
 //                 48         49       50        51       52          55        56       57         58       59
-                   TOG_RST    &none    &kp BKSP  SL_NAVD  CTL_TAB     GUI_ENT   SL_PUND  &kp SPACE  &none    &td_qw
+                   &td_rst    &none    &kp BKSP  SL_NAVD  CTL_TAB     GUI_ENT   SL_PUND  &kp SPACE  &none    &td_qw
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -296,7 +296,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 &ext_power EP_TOG  &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &rgb_ug RGB_EFF                                 &none      &kp KP_N7    &kp KP_N8     &kp KP_N9        &kp KP_PLUS   &kp PSCRN
 &none              &rgb_ug RGB_BRD  &rgb_ug RGB_BRI  &rgb_ug RGB_SPD  &rgb_ug RGB_SPI  &rgb_ug RGB_EFR                                 &none      &kp KP_N4    &kp KP_N5     &kp KP_N6        &kp KP_EQUAL  &kp PAUSE_BREAK
 &bootloader        &none            &none            &none            &none            &none            &rgb_ug RGB_TOG  &none         &kp KP_N0  &kp KP_N1    &kp KP_N2     &kp KP_N3        &kp KP_DOT    &bootloader
-                                    TOG_RST          &none            &none            &none            &none            &kp KP_ENTER  &kp KP_N0  &kp BSPC     &none         &none
+                                    &td_rst          &none            &none            &none            &none            &kp KP_ENTER  &kp KP_N0  &kp BSPC     &none         &none
             >;
         };
 /* default sofle keymap
