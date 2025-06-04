@@ -29,8 +29,6 @@
 // Layer-related
 #define TOG_RST &tog _RESET_NUM
 #define TOG_QW &tog _QWERTY
-#define TD_RST &td_rst          // Tap dance Reset/Num layer
-#define TD_QW &td_qw            // Tap dance Qwerty layer
 #define SL_NAVD &sl _NAV_DV     // Sticky layer DV Nav layer
 #define SL_NAVQ &sl _NAV_QW     // Sticky layer QW Nav layer
 #define SL_PUND &sl _PUNCT_DV   // Sticky layer DV Punct layer
@@ -39,6 +37,12 @@
 #define MO_NAVQ &mo _NAV_QW     // Momentary QW Nav layer
 #define MO_PUND &sl _PUNCT_DV   // Momentary DV Punct layer
 #define MO_PUNQ &sl _PUNCT_QW   // Momentary QW Punct layer
+#define TD_RST &td_rst          // Tap dance Reset/Num layer
+#define TD_QW &td_qw            // Tap dance Qwerty layer
+#define TD_LLYD &td_llyd        // Tap dance Left Hand DV layer
+#define TD_RLYD &td_rlyd        // Tap dance Right Hand DV layer
+#define TD_LLYQ &td_llyq        // Tap dance Left Hand QW layer
+#define TD_RLYQ &td_rlyq        // Tap dance Right Hand QW layer
 
 // Modifier-related
 #define CTL_ESC &bhm LCTL ESC
@@ -88,16 +92,46 @@
             bindings = <&kp>, <&kp>;
         };
         td_rst: tap_dance_reset_num_layer {
+            // Using tap-dance to require 3 taps to get to _RESET_NUM layer.
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <500>;
             bindings = <&none>, <&none>, <&tog _RESET_NUM>;
         };
         td_qw: tap_dance_qwerty_layer {
+            // Using tap-dance to require 3 taps to get to _QWERTY layer.
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <500>;
             bindings = <&none>, <&none>, <&tog _QWERTY>;
+        };
+        td_llyd: tap_dance_left_layer_dv {
+            // Using tap-dance to get other layers with same key.
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <350>;
+            bindings = <&sl _NAV_DV>, <&sl _PUN_DV>, <&mo _NAV_DV>;
+        };
+        td_rlyd: tap_dance_right_layer_dv {
+            // Using tap-dance to get other layers with same key.
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <350>;
+            bindings = <&sl _PUN_DV>, <&sl _NAV_DV>, <&mo _PUN_DV>;
+        };
+        td_llyq: tap_dance_left_layer_qw {
+            // Using tap-dance to get other layers with same key.
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <350>;
+            bindings = <&sl _NAV_QW>, <&sl _PUN_QW>, <&mo _NAV_QW>;
+        };
+        td_rlyq: tap_dance_right_layer_qw {
+            // Using tap-dance to get other layers with same key.
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <350>;
+            bindings = <&sl _PUN_QW>, <&sl _NAV_QW>, <&mo _PUN_QW>;
         };
     };
 
@@ -146,7 +180,8 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 // 36     37       38         39       40        41       53          54        42       43         44       45       46       47
 &kp LSFT  LSFT_SC  LALT__Q    LCTL__J  LGUI__K   &kp X    &kp C_MUTE  &kp C_PP  &kp B    RGUI__M    RCTL__W  LALT__V  RSFT__Z  &kp RSFT
 //                 48         49       50        51       52          55        56       57         58       59
-                   &td_rst    &none    &kp BKSP  SL_NAVD  CTL_TAB     GUI_ENT   SL_PUND  &kp SPACE  &none    &td_qw
+//                 &td_rst    &none    &kp BKSP  SL_NAVD  CTL_TAB     GUI_ENT   SL_PUND  &kp SPACE  &none    &td_qw
+                   &td_rst    &none    &kp BKSP  TD_LLRD  CTL_TAB     GUI_ENT   TD_RLRD  &kp SPACE  &none    &td_qw
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -171,7 +206,8 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 &trans  &kp Q    &kp W    &kp E    &kp R     &kp T                      &kp Y   &kp U      &kp I    &kp O    &kp P     &kp LBRC
 &trans  &kp A    &kp S    &kp D    &kp F     &kp G                      &kp H   &kp J      &kp K    &kp L    &kp SEMI  &kp SQT
 &trans  LSFT__Z  LALT__X  LCTL__C  LGUI__V   &kp B    &trans   &trans   &kp N   RGUI__M    RCTL_CM  LALT_DT  RSFT_SH   &kp RSFT
-                 &td_rst  &none    &trans    SL_NAVQ  &trans   &trans   SL_PUNQ &trans     &none    &td_qw
+//               &td_rst  &none    &trans    SL_NAVQ  &trans   &trans   SL_PUNQ &trans     &none    &td_qw
+                 &td_rst  &none    &trans    TD_LLRQ  &trans   &trans   TD_RLRQ &trans     &none    &td_qw
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -196,7 +232,8 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 &none   &none      &none      &none      &none      &none                       &kp GRAVE  &kp LBKT   &kp RBKT   &kp LBRC  &kp RBRC   &kp F12
 &trans  &none      &none      &none      &none      &kp BSLH                    &kp FSLH   &kp MINUS  &kp UNDER  &kp LPAR  &kp RPAR   CTL_ESC
 &trans  &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)  &none     &trans   &trans   &kp TILDE  &kp EQUAL  &kp PLUS   &kp PLUS  &kp QMARK  &trans
-                   &none      &none      &kp DEL    MO_NAVD   GUI_ENT  CTL_TAB  SL_NAVD    &kp SPC    &none      &none
+//                 &none      &none      &kp DEL    MO_NAVD   GUI_ENT  CTL_TAB  SL_NAVD    &kp SPC    &none      &none
+                   &none      &none      &kp DEL    TD_LLRD   GUI_ENT  CTL_TAB  TD_RLRD    &kp SPC    &none      &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -221,7 +258,8 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 &trans  &trans  &trans  &trans  &trans  &trans                     &trans    &kp MINUS  &kp EQUAL  &kp UNDER  &kp PLUS  &trans
 &trans  &trans  &trans  &trans  &trans  &trans                     &kp LBKT  &kp SQT    &kp DQT    &kp LPAR   &kp RPAR  &trans
 &trans  &trans  &trans  &trans  &trans  &trans   &trans  &kp LBKT  &trans    &kp RBKT   &kp RBRC   &trans     &kp LBRC  &trans
-                &none   &none   &trans  MO_NAVQ  &trans  &trans    SL_NAVQ   &kp SPC    &none      &none
+//              &none   &none   &trans  MO_NAVQ  &trans  &trans    SL_NAVQ   &kp SPC    &none      &none
+                &none   &none   &trans  TD_LLRQ  &trans  &trans    TD_RLRQ   &kp SPC    &none      &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -246,7 +284,8 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 &none   &kp LC(HOME)  &none     &kp UP    &kp PG_UP  &kp LC(END)                    &none    &kp C_PREV  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT  &kp F12
 &trans  &kp HOME      &kp LEFT  &kp DOWN  &kp RIGHT  &kp END                        &none    &kp LEFT    &kp DOWN      &kp UP        &kp RIGHT   &trans
 &trans  &none         &none     &kp DOWN  &kp PG_DN  &kp DEL      &trans   &trans   &none    &kp C_PP    &kp C_MUTE    &kp C_EJECT   &none       &trans
-                      &none     &none     &kp SPACE  SL_PUND      GUI_ENT  CTL_DEL  MO_PUND  &kp BSPC    &none         &none
+//                    &none     &none     &kp SPACE  SL_PUND      GUI_ENT  CTL_DEL  MO_PUND  &kp BSPC    &none         &none
+                      &none     &none     &kp SPACE  TD_LLRD      GUI_ENT  CTL_DEL  TD_RLRD  &kp BSPC    &none         &none
            >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -271,7 +310,8 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 &trans  &trans  &trans  &trans  &trans   &trans                     &trans    &trans    &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans   &trans                     &kp LBKT  &trans    &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans   &trans   &trans  &kp LBKT  &trans    &trans    &trans  &trans  &trans  &trans
-                &trans  &trans  &trans   SL_PUNQ  &trans  &trans    MO_PUND   &trans    &trans  &trans
+//              &trans  &trans  &trans   SL_PUNQ  &trans  &trans    MO_PUNQ   &trans    &trans  &trans
+                &trans  &trans  &trans   TD_LLRQ  &trans  &trans    TD_RLRQ   &trans    &trans  &trans
            >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
