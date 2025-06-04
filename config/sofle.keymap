@@ -166,22 +166,22 @@
 // |------+------+------+------+------+------|                | -----+------+------+------+------+------|
 // | C_Esc| a A  | o O  | e E  | u U  | i I  |                | d D  | h H  | t T  | n N  | s S  | - _  |
 // |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
-// | LShft| ; :  | q Q  | j J  | k K  | x X  | Mute |  | Pl/Pa| b B  | m M  | w W  | v V  | z Z  | RShft|
+// | LShft| ; :  | q Q  | j J  | k K  | x X  | G_Ent|  | Pl/Pa| b B  | m M  | w W  | v V  | z Z  | RShft|
 // `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
 //               |td_rst|      | BkSp |slnavd| C_Tab|  | G_Ent|slpund| Space|      | td_qw|
 //               `----------------------------------'  `----------------------------------'
             bindings = <
-// 0      1        2          3        4         5                              6        7          8        9        10       11
-&sk LALT  &kp N1   &kp N2     &kp N3   &kp N4    &kp N5                         &kp N6   &kp N7     &kp N8   &kp N9   &kp N0   &kp EQUAL
-// 12     13       14         15       16        17                             18       19         20       21       22       23
-&kp TAB   &kp SQT  &kp COMMA  &kp DOT  &kp P     &kp Y                          &kp F    &kp G      &kp C    &kp R    &kp L    &kp FSLH
-// 24     25       26         27       28        29                             30       31         32       33       34       35
-CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          &kp D    &kp H      &kp T    &kp N    &kp S    &kp MINUS
-// 36     37       38         39       40        41       53          54        42       43         44       45       46       47
-&kp LSFT  LSFT_SC  LALT__Q    LCTL__J  LGUI__K   &kp X    &kp C_MUTE  &kp C_PP  &kp B    RGUI__M    RCTL__W  LALT__V  RSFT__Z  &kp RSFT
-//                 48         49       50        51       52          55        56       57         58       59
-//                 &td_rst    &none    &kp BKSP  SL_NAVD  CTL_TAB     GUI_ENT   SL_PUND  &kp SPACE  &none    &td_qw
-                   &td_rst    &none    &kp BKSP  TD_LLYD  CTL_TAB     GUI_ENT   TD_RLYD  &kp SPACE  &none    &td_qw
+// 0      1        2          3        4         5                           6        7          8        9        10       11
+&sk LALT  &kp N1   &kp N2     &kp N3   &kp N4    &kp N5                      &kp N6   &kp N7     &kp N8   &kp N9   &kp N0   &kp EQUAL
+// 12     13       14         15       16        17                          18       19         20       21       22       23
+&kp TAB   &kp SQT  &kp COMMA  &kp DOT  &kp P     &kp Y                       &kp F    &kp G      &kp C    &kp R    &kp L    &kp FSLH
+// 24     25       26         27       28        29                          30       31         32       33       34       35
+CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp D    &kp H      &kp T    &kp N    &kp S    &kp MINUS
+// 36     37       38         39       40        41       53       54        42       43         44       45       46       47
+&kp LSFT  LSFT_SC  LALT__Q    LCTL__J  LGUI__K   &kp X    GUI_ENT  &kp C_PP  &kp B    RGUI__M    RCTL__W  LALT__V  RSFT__Z  &kp RSFT
+//                 48         49       50        51       52       55        56       57         58       59
+//                 &td_rst    &none    &kp BKSP  SL_NAVD  CTL_TAB  GUI_ENT   SL_PUND  &kp SPACE  &none    &td_qw
+                   TD_RST     &none    &kp BKSP  TD_LLYD  CTL_TAB  GUI_ENT   TD_RLYD  &kp SPACE  &none    TD_QW
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -197,9 +197,9 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 // |------+------+------+------+------+------|                | -----+------+------+------+------+------|
 // | C_Esc| a A  | s S  | d D  | f F  | g G  |                | h H  | j J  | k K  | l L  | ; :  | ' "  |
 // |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
-// | LShft| z Z  | x X  | c C  | v V  | b B  | Mute |  | Pl/Pa| n N  | m M  | , <  | . >  | / ?  | RShft|
+// | LShft| z Z  | x X  | c C  | v V  | b B  | G_Ent|  | Pl/Pa| n N  | m M  | , <  | . >  | / ?  | RShft|
 // `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
-//               |td_rst|      | BkSp |slnavq| C_Tab|  | G_Ent|slpunq| Space|      | td_qw|
+//               |      |      | BkSp |slnavq| C_Tab|  | G_Ent|slpunq| Space|      | td_qw|
 //               `----------------------------------'  `----------------------------------'
             bindings = <
 &trans  &trans   &trans   &trans   &trans    &trans                     &trans  &trans     &trans   &trans   &trans    &kp RBRC
@@ -207,7 +207,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 &trans  &kp A    &kp S    &kp D    &kp F     &kp G                      &kp H   &kp J      &kp K    &kp L    &kp SEMI  &kp SQT
 &trans  LSFT__Z  LALT__X  LCTL__C  LGUI__V   &kp B    &trans   &trans   &kp N   RGUI__M    RCTL_CM  LALT_DT  RSFT_SH   &kp RSFT
 //               &td_rst  &none    &trans    SL_NAVQ  &trans   &trans   SL_PUNQ &trans     &none    &td_qw
-                 &td_rst  &none    &trans    TD_LLYQ  &trans   &trans   TD_RLYQ &trans     &none    &td_qw
+                 &none    &none    &trans    TD_LLYQ  &trans   &trans   TD_RLYQ &trans     &none    TD_QW
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -275,17 +275,17 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 // |------+------+------+------+------+------|                | -----+------+------+------+------+------|
 // | C_Esc| Home | Left | Down | Right| End  |                |      | Left | Down | Up   | Right| C_Esc|
 // |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
-// | LShft|      |      | Down | PgDn | Del  | \    |  | /    |      | Play | Mute | Eject|      | RShft|
+// | LShft|      |      | Down | PgDn | Del  | Mute |  | Pl/Pa|      | Pl/Pa| Mute | Eject|      | RShft|
 // `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
 //               |      |      | Space|slpund| G_Ent|  | C_Del|mopund| BkSp |      |      |
 //               `----------------------------------'  `----------------------------------'
             bindings = <
-&none   &kp F1        &kp F2    &kp F3    &kp F4     &kp F5                         &kp F6   &kp F7      &kp F8        &kp F9        &kp F10     &kp F11
-&none   &kp LC(HOME)  &none     &kp UP    &kp PG_UP  &kp LC(END)                    &none    &kp C_PREV  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT  &kp F12
-&trans  &kp HOME      &kp LEFT  &kp DOWN  &kp RIGHT  &kp END                        &none    &kp LEFT    &kp DOWN      &kp UP        &kp RIGHT   &trans
-&trans  &none         &none     &kp DOWN  &kp PG_DN  &kp DEL      &trans   &trans   &none    &kp C_PP    &kp C_MUTE    &kp C_EJECT   &none       &trans
-//                    &none     &none     &kp SPACE  SL_PUND      GUI_ENT  CTL_DEL  MO_PUND  &kp BSPC    &none         &none
-                      &none     &none     &kp SPACE  TD_LLYD      GUI_ENT  CTL_DEL  TD_RLYD  &kp BSPC    &none         &none
+&none   &kp F1        &kp F2    &kp F3    &kp F4     &kp F5                             &kp F6   &kp F7      &kp F8        &kp F9        &kp F10     &kp F11
+&none   &kp LC(HOME)  &none     &kp UP    &kp PG_UP  &kp LC(END)                        &none    &kp C_PREV  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT  &kp F12
+&trans  &kp HOME      &kp LEFT  &kp DOWN  &kp RIGHT  &kp END                            &none    &kp LEFT    &kp DOWN      &kp UP        &kp RIGHT   &trans
+&trans  &none         &none     &kp DOWN  &kp PG_DN  &kp DEL      &kp C_MUTE  &kp C_PP  &none    &kp C_PP    &kp C_MUTE    &kp C_EJECT   &none       &trans
+//                    &none     &none     &kp SPACE  SL_PUND      GUI_ENT     CTL_DEL   MO_PUND  &kp BSPC    &none         &none
+                      &none     &none     &kp SPACE  TD_LLYD      GUI_ENT     CTL_DEL   TD_RLYD  &kp BSPC    &none         &none
            >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -301,17 +301,17 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 // |------+------+------+------+------+------|                | -----+------+------+------+------+------|
 // | C_Esc| Home | Left | Down | Right| End  |                |      | Left | Down | Up   | Right| C_Esc|
 // |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
-// | LShft|      |      | Down | PgDn | Del  | \    |  | [    |      | Play | Mute | Eject|      | RShft|
+// | LShft|      |      | Down | PgDn | Del  | Mute |  | Pl/Pa|      | Pl/Pa| Mute | Eject|      | RShft|
 // `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
 //               |      |      | Space|slpunq| G_Ent|  | C_Del|mopunq| BkSp |      |      |
 //               `----------------------------------'  `----------------------------------'
             bindings = <
-&trans  &trans  &trans  &trans  &trans   &trans                     &trans    &trans    &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans   &trans                     &trans    &trans    &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans   &trans                     &kp LBKT  &trans    &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans   &trans   &trans  &kp LBKT  &trans    &trans    &trans  &trans  &trans  &trans
-//              &trans  &trans  &trans   SL_PUNQ  &trans  &trans    MO_PUNQ   &trans    &trans  &trans
-                &trans  &trans  &trans   TD_LLYQ  &trans  &trans    TD_RLYQ   &trans    &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                   &trans   &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                   &trans   &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                   &trans   &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans   &trans  &trans  &trans   &trans  &trans  &trans  &trans  &trans
+//              &trans  &trans  &trans  SL_PUNQ  &trans  &trans  MO_PUNQ  &trans  &trans  &trans
+                &trans  &trans  &trans  TD_LLYQ  &trans  &trans  TD_RLYQ  &trans  &trans  &trans
            >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
