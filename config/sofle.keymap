@@ -110,28 +110,28 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <350>;
-            bindings = <&sl _NAV_DV>, <&sl _PUN_DV>, <&mo _NAV_DV>;
+            bindings = <&sl _NAV_DV>, <&sl _PUNCT_DV>, <&mo _NAV_DV>;
         };
         td_rlyd: tap_dance_right_layer_dv {
             // Using tap-dance to get other layers with same key.
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <350>;
-            bindings = <&sl _PUN_DV>, <&sl _NAV_DV>, <&mo _PUN_DV>;
+            bindings = <&sl _PUNCT_DV>, <&sl _NAV_DV>, <&mo _PUNCT_DV>;
         };
         td_llyq: tap_dance_left_layer_qw {
             // Using tap-dance to get other layers with same key.
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <350>;
-            bindings = <&sl _NAV_QW>, <&sl _PUN_QW>, <&mo _NAV_QW>;
+            bindings = <&sl _NAV_QW>, <&sl _PUNCT_QW>, <&mo _NAV_QW>;
         };
         td_rlyq: tap_dance_right_layer_qw {
             // Using tap-dance to get other layers with same key.
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <350>;
-            bindings = <&sl _PUN_QW>, <&sl _NAV_QW>, <&mo _PUN_QW>;
+            bindings = <&sl _PUNCT_QW>, <&sl _NAV_QW>, <&mo _PUNCT_QW>;
         };
     };
 
