@@ -181,7 +181,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 &kp LSFT  LSFT_SC  LALT__Q    LCTL__J  LGUI__K   &kp X    &kp C_MUTE  &kp C_PP  &kp B    RGUI__M    RCTL__W  LALT__V  RSFT__Z  &kp RSFT
 //                 48         49       50        51       52          55        56       57         58       59
 //                 &td_rst    &none    &kp BKSP  SL_NAVD  CTL_TAB     GUI_ENT   SL_PUND  &kp SPACE  &none    &td_qw
-                   &td_rst    &none    &kp BKSP  TD_LLRD  CTL_TAB     GUI_ENT   TD_RLRD  &kp SPACE  &none    &td_qw
+                   &td_rst    &none    &kp BKSP  TD_LLYD  CTL_TAB     GUI_ENT   TD_RLYD  &kp SPACE  &none    &td_qw
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -207,7 +207,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 &trans  &kp A    &kp S    &kp D    &kp F     &kp G                      &kp H   &kp J      &kp K    &kp L    &kp SEMI  &kp SQT
 &trans  LSFT__Z  LALT__X  LCTL__C  LGUI__V   &kp B    &trans   &trans   &kp N   RGUI__M    RCTL_CM  LALT_DT  RSFT_SH   &kp RSFT
 //               &td_rst  &none    &trans    SL_NAVQ  &trans   &trans   SL_PUNQ &trans     &none    &td_qw
-                 &td_rst  &none    &trans    TD_LLRQ  &trans   &trans   TD_RLRQ &trans     &none    &td_qw
+                 &td_rst  &none    &trans    TD_LLYQ  &trans   &trans   TD_RLYQ &trans     &none    &td_qw
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -233,7 +233,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 &trans  &none      &none      &none      &none      &kp BSLH                    &kp FSLH   &kp MINUS  &kp UNDER  &kp LPAR  &kp RPAR   CTL_ESC
 &trans  &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)  &none     &trans   &trans   &kp TILDE  &kp EQUAL  &kp PLUS   &kp PLUS  &kp QMARK  &trans
 //                 &none      &none      &kp DEL    MO_NAVD   GUI_ENT  CTL_TAB  SL_NAVD    &kp SPC    &none      &none
-                   &none      &none      &kp DEL    TD_LLRD   GUI_ENT  CTL_TAB  TD_RLRD    &kp SPC    &none      &none
+                   &none      &none      &kp DEL    TD_LLYD   GUI_ENT  CTL_TAB  TD_RLYD    &kp SPC    &none      &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -259,7 +259,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 &trans  &trans  &trans  &trans  &trans  &trans                     &kp LBKT  &kp SQT    &kp DQT    &kp LPAR   &kp RPAR  &trans
 &trans  &trans  &trans  &trans  &trans  &trans   &trans  &kp LBKT  &trans    &kp RBKT   &kp RBRC   &trans     &kp LBRC  &trans
 //              &none   &none   &trans  MO_NAVQ  &trans  &trans    SL_NAVQ   &kp SPC    &none      &none
-                &none   &none   &trans  TD_LLRQ  &trans  &trans    TD_RLRQ   &kp SPC    &none      &none
+                &none   &none   &trans  TD_LLYQ  &trans  &trans    TD_RLYQ   &kp SPC    &none      &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -285,7 +285,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 &trans  &kp HOME      &kp LEFT  &kp DOWN  &kp RIGHT  &kp END                        &none    &kp LEFT    &kp DOWN      &kp UP        &kp RIGHT   &trans
 &trans  &none         &none     &kp DOWN  &kp PG_DN  &kp DEL      &trans   &trans   &none    &kp C_PP    &kp C_MUTE    &kp C_EJECT   &none       &trans
 //                    &none     &none     &kp SPACE  SL_PUND      GUI_ENT  CTL_DEL  MO_PUND  &kp BSPC    &none         &none
-                      &none     &none     &kp SPACE  TD_LLRD      GUI_ENT  CTL_DEL  TD_RLRD  &kp BSPC    &none         &none
+                      &none     &none     &kp SPACE  TD_LLYD      GUI_ENT  CTL_DEL  TD_RLYD  &kp BSPC    &none         &none
            >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -311,7 +311,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                          
 &trans  &trans  &trans  &trans  &trans   &trans                     &kp LBKT  &trans    &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans   &trans   &trans  &kp LBKT  &trans    &trans    &trans  &trans  &trans  &trans
 //              &trans  &trans  &trans   SL_PUNQ  &trans  &trans    MO_PUNQ   &trans    &trans  &trans
-                &trans  &trans  &trans   TD_LLRQ  &trans  &trans    TD_RLRQ   &trans    &trans  &trans
+                &trans  &trans  &trans   TD_LLYQ  &trans  &trans    TD_RLYQ   &trans    &trans  &trans
            >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
