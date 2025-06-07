@@ -139,7 +139,7 @@
         compatible = "zmk,combos";
         caplk: combo_capslock {
             timeout-ms = <150>;
-            key-positions = <36 47>;
+            key-positions = <36 49>;
             bindings = <&kp CAPSLOCK>;
         };
         capwd: combo_capsword {
@@ -177,9 +177,9 @@
 &kp TAB   &kp SQT  &kp COMMA  &kp DOT  &kp P     &kp Y                       &kp F    &kp G      &kp C    &kp R    &kp L    &kp FSLH
 // 24     25       26         27       28        29                          30       31         32       33       34       35
 CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp D    &kp H      &kp T    &kp N    &kp S    &kp MINUS
-// 36     37       38         39       40        41       53       54        42       43         44       45       46       47
+// 36     37       38         39       40        41       42       43        44       45         46       47       48       49
 &kp LSFT  LSFT_SC  LALT__Q    LCTL__J  LGUI__K   &kp X    GUI_ENT  &kp C_PP  &kp B    RGUI__M    RCTL__W  LALT__V  RSFT__Z  &kp RSFT
-//                 48         49       50        51       52       55        56       57         58       59
+//                 50         51       52        53       54       55        56       57         58       59
 //                 &td_rst    &none    &kp BKSP  SL_NAVD  CTL_TAB  GUI_ENT   SL_PUND  &kp SPACE  &none    &td_qw
                    TD_RST     &none    &kp BKSP  TD_LLYD  CTL_TAB  GUI_ENT   TD_RLYD  &kp SPACE  &none    TD_QW
             >;
