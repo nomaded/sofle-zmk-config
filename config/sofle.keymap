@@ -17,6 +17,11 @@
 // Source desired key-position labels
 #include "zmk-helpers/key-labels/sofle.h"
 
+// Mousee emulation defines
+//#define ZMK_POINTING_DEFAULT_MOVE_VAL 1500  // default: 600
+//#define ZMK_POINTING_DEFAULT_SCRL_VAL 20    // default: 10
+#include <dt-bindings/zmk/pointing.h>
+
 // Each layer gets a name for readability, which is then used in the keymap
 // matrix below. The underscores don't mean anything - you can have a layer
 // called STUFF or any other name. Layer names don't all need to be of the
@@ -138,6 +143,12 @@
             tapping-term-ms = <350>;
             bindings = <&sl _PUNCT_QW>, <&sl _NAV_QW>, <&mo _PUNCT_QW>;
         };
+        enc_mscroll: encoder_mouse_scroll {
+            // Define mouse scroll for the encoder
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+        };
     };
 
     combos {
@@ -195,7 +206,8 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
                    TD_RST     &none    &kp BKSP  TD_LLYD  CTL_TAB  GUI_ENT   TD_RLYD  &kp SPACE  &none    TD_QW
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &enc_mscroll>;
         };
         qwerty {
             display-name = "qwerty";
@@ -220,7 +232,8 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
                  &none    &none    &trans    TD_LLYQ  &trans   &trans   TD_RLYQ &trans     &none    TD_QW
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &enc_mscroll>;
         };
         punct_dv {
             display-name = "punct_dv";
@@ -245,7 +258,8 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
                    &none      &none      &kp DEL    TD_LLYD   GUI_ENT  CTL_TAB  TD_RLYD    &kp SPC    &none      &none
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &enc_mscroll>;
         };
         punct_qw {
             display-name = "punct_qw";
@@ -270,7 +284,8 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
                 &none   &none   &trans  TD_LLYQ  &trans  &trans    TD_RLYQ   &kp SPC    &none      &none
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &enc_mscroll>;
         };
         nav_dv {
             display-name = "nav_dv";
@@ -295,7 +310,8 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
                       &none     &none     &kp SPACE  TD_LLYD      GUI_ENT     CTL_DEL   TD_RLYD  &kp BSPC    &none         &none
            >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &enc_mscroll>;
         };
         nav_qw {
             display-name = "nav_qw";
@@ -320,7 +336,8 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
                 &trans  &trans  &trans  TD_LLYQ  &trans  &trans  TD_RLYQ  &trans  &trans  &trans
            >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &enc_mscroll>;
         };
         reset_numpad {
             display-name = "reset_numpad";
