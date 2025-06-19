@@ -19,7 +19,7 @@
 
 // Mousee emulation defines
 //#define ZMK_POINTING_DEFAULT_MOVE_VAL 1500  // default: 600
-//#define ZMK_POINTING_DEFAULT_SCRL_VAL 20    // default: 10
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 100    // default: 10
 #include <dt-bindings/zmk/pointing.h>
 
 // Each layer gets a name for readability, which is then used in the keymap
@@ -147,6 +147,7 @@
             // Define mouse scroll for the encoder
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
+            tap-ms = <20>;
             bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
         };
     };
@@ -156,7 +157,7 @@
         caplk: combo_capslock {
             timeout-ms = <150>;
             //key-positions = <36 49>;
-            key-positions = <36 49>; // combo of lshift and rshift for capslock, using key-labels
+            key-positions = <LB5 RB5>; // combo of lshift and rshift for capslock, using key-labels
             bindings = <&kp CAPSLOCK>;
         };
         capwd: combo_capsword {
