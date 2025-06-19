@@ -19,7 +19,8 @@
 
 // Mousee emulation defines
 //#define ZMK_POINTING_DEFAULT_MOVE_VAL 1500  // default: 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 100    // default: 10
+// Increased scroll value per https://github.com/zmkfirmware/zmk/issues/72
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 150    // default: 10
 #include <dt-bindings/zmk/pointing.h>
 
 // Each layer gets a name for readability, which is then used in the keymap
@@ -147,6 +148,7 @@
             // Define mouse scroll for the encoder
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
+            // added tap-ms per https://github.com/zmkfirmware/zmk/issues/72
             tap-ms = <20>;
             bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
         };
@@ -208,8 +210,8 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
             >;
 
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-            //sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_mscroll>;
-            sensor-bindings = <&enc_mscroll &enc_mscroll>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_mscroll>;
+            //sensor-bindings = <&enc_mscroll &enc_mscroll>;
         };
         qwerty {
             display-name = "qwerty";
