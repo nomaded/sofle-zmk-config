@@ -207,7 +207,8 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
             >;
 
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &enc_mscroll>;
+            //sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_mscroll>;
+            sensor-bindings = <&enc_mscroll &enc_mscroll>;
         };
         qwerty {
             display-name = "qwerty";
@@ -233,7 +234,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
             >;
 
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &enc_mscroll>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_mscroll>;
         };
         punct_dv {
             display-name = "punct_dv";
@@ -259,7 +260,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
             >;
 
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &enc_mscroll>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_mscroll>;
         };
         punct_qw {
             display-name = "punct_qw";
@@ -285,7 +286,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
             >;
 
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &enc_mscroll>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_mscroll>;
         };
         nav_dv {
             display-name = "nav_dv";
@@ -311,7 +312,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
            >;
 
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &enc_mscroll>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_mscroll>;
         };
         nav_qw {
             display-name = "nav_qw";
@@ -337,7 +338,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
            >;
 
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &enc_mscroll>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_mscroll>;
         };
         reset_numpad {
             display-name = "reset_numpad";
