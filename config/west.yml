@@ -6,8 +6,12 @@ manifest:
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
     #
     # Adding support for urob's zmk-helpers
-    - name: urob
-      url-base: https://github.com/urob
+    #- name: urob
+    #  url-base: https://github.com/urob
+    #
+    # Switching my my own fork of urob's zmk-helpers
+    - name: nomaded
+      url-base: https://github.com/nomaded
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -15,7 +19,9 @@ manifest:
       import: app/west.yml
     - name: zmk-helpers
     # Adding support for urob's zmk-helpers
-      remote: urob
+    # remote: urob
+    # revision: main
+      remote: nomaded
       revision: main
   self:
     path: config

@@ -107,7 +107,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <500>;
-            bindings = <&none>, <&none>, <&tog _RESET_NUM>;
+            bindings = <&none>, <&mo _RESET_NUM>, <&tog _RESET_NUM>;
         };
         td_qw: tap_dance_qwerty_layer {
             // Using tap-dance to require 3 taps to get to _QWERTY layer.
