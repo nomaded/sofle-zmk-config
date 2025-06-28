@@ -150,7 +150,9 @@
             #sensor-binding-cells = <0>;
             // added tap-ms per https://github.com/zmkfirmware/zmk/issues/72
             tap-ms = <20>;
-            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+            //bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+            // CW is down, CCW is up
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
         };
     };
 
