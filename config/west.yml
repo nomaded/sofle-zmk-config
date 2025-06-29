@@ -8,10 +8,12 @@ manifest:
     # Adding support for urob's zmk-helpers
     #- name: urob
     #  url-base: https://github.com/urob
-    #
     # Switching my my own fork of urob's zmk-helpers
     - name: nomaded
       url-base: https://github.com/nomaded
+    # support nice_oled and nice_epaper
+    - name: mctechnology17
+      url-base: https://github.com/mctechnology17
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -22,6 +24,10 @@ manifest:
     # remote: urob
     # revision: main
       remote: nomaded
+      revision: main
+    # support nice_oled and nice_epaper
+    - name: zmk-nice-oled
+      remote: mctechnology17
       revision: main
   self:
     path: config
