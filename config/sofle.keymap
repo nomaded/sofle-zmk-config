@@ -361,11 +361,11 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
 //               |td_rst|      |      |      |RgbTog|  | NpEnt| Np 0 | Space|      |      |
 //               `----------------------------------'  `----------------------------------'
             bindings = <
-&bt BT_CLR         &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                                    &none      &kp KP_NLCK  &kp KP_SLASH  &kp KP_ASTERISK  &kp KP_MINUS  &kp SLCK
-&none              &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &rgb_ug RGB_EFF                                 &none      &kp KP_N7    &kp KP_N8     &kp KP_N9        &kp KP_PLUS   &kp PSCRN
-&ext_power EP_TOG  &rgb_ug RGB_BRD  &rgb_ug RGB_BRI  &rgb_ug RGB_SPD  &rgb_ug RGB_SPI  &rgb_ug RGB_EFR                                 &none      &kp KP_N4    &kp KP_N5     &kp KP_N6        &kp KP_EQUAL  &kp PAUSE_BREAK
-&bootloader        &none            &none            &none            &none            &none            &soft_off        &soft_off     &kp KP_N0  &kp KP_N1    &kp KP_N2     &kp KP_N3        &kp KP_DOT    &bootloader
-                                    TD_RST           &none            &none            &none            &rgb_ug RGB_TOG  &kp KP_ENTER  &kp KP_N0  &kp BSPC     &none         &none
+&bt BT_CLR         &bt BT_SEL 0       &bt BT_SEL 1      &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                                    &none      &kp KP_NLCK  &kp KP_SLASH  &kp KP_ASTERISK  &kp KP_MINUS  &kp SLCK
+&none              &rgb_ug RGB_HUD    &rgb_ug RGB_HUI   &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &rgb_ug RGB_EFF                                 &none      &kp KP_N7    &kp KP_N8     &kp KP_N9        &kp KP_PLUS   &kp PSCRN
+&ext_power EP_TOG  &rgb_ug RGB_BRD    &rgb_ug RGB_BRI   &rgb_ug RGB_SPD  &rgb_ug RGB_SPI  &rgb_ug RGB_EFR                                 &none      &kp KP_N4    &kp KP_N5     &kp KP_N6        &kp KP_EQUAL  &kp PAUSE_BREAK
+&bootloader        &ext_power EP_OFF  &ext_power EP_ON  &none            &none            &none            &soft_off        &soft_off     &kp KP_N0  &kp KP_N1    &kp KP_N2     &kp KP_N3        &kp KP_DOT    &bootloader
+                                      TD_RST            &none            &none            &none            &rgb_ug RGB_TOG  &kp KP_ENTER  &kp KP_N0  &kp BSPC     &none         &none
             >;
         };
 /* default sofle keymap
