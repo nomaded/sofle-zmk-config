@@ -179,7 +179,7 @@
         compatible = "zmk,keymap";
 
         dvorak {
-            display-name = "dvorak";
+            display-name = "DV";
 //
 // default, dvorak in keyboard, qwerty in OS
 // ,-----------------------------------------.                ,-----------------------------------------.
@@ -216,7 +216,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
             //sensor-bindings = <&enc_mscroll &enc_mscroll>;
         };
         qwerty {
-            display-name = "qwerty";
+            display-name = "QW";
 //
 // qwerty in keyboard, dvorak in OS
 // ,-----------------------------------------.                ,-----------------------------------------.
@@ -242,7 +242,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_mscroll>;
         };
         punct_dv {
-            display-name = "punct_dv";
+            display-name = "PUND";
 //
 // punctpad, dvorak in keyboard, qwerty in OS
 // ,-----------------------------------------.                ,-----------------------------------------.
@@ -268,7 +268,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_mscroll>;
         };
         punct_qw {
-            display-name = "punct_qw";
+            display-name = "PUNQ";
 //
 // punctpad, qwerty in keyboard, dvorak in OS
 // ,-----------------------------------------.                ,-----------------------------------------.
@@ -294,7 +294,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_mscroll>;
         };
         nav_dv {
-            display-name = "nav_dv";
+            display-name = "NAVD";
 //
 // nav, dvorak in keyboard, qwerty in OS
 // ,-----------------------------------------.                ,-----------------------------------------.
@@ -320,7 +320,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_mscroll>;
         };
         nav_qw {
-            display-name = "nav_qw";
+            display-name = "NAVQ";
 //
 // nav, qwerty in keyboard, dvorak in OS
 // ,-----------------------------------------.                ,-----------------------------------------.
@@ -346,7 +346,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_mscroll>;
         };
         reset_numpad {
-            display-name = "reset_numpad";
+            display-name = "RSTN";
 //
 // reset, and numpad
 // ,-----------------------------------------.                ,-----------------------------------------.
