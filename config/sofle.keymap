@@ -37,6 +37,9 @@
 #define _RESET_NUM 6
 
 // Helpful defines
+#define XXXXXXX &none
+#define _______ &trans
+
 // Layer-related
 #define TOG_RST &tog _RESET_NUM
 #define TOG_QW &tog _QWERTY
@@ -191,7 +194,7 @@
 // |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
 // | LShft| ; :  | q Q  | j J  | k K  | x X  | G_Ent|  | Pl/Pa| b B  | m M  | w W  | v V  | z Z  | RShft|
 // `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
-//               |td_rst|      | BkSp |slnavd| C_Tab|  | G_Ent|slpund| Space|      | td_qw|
+//               |td_rst|      | BkSp |tdllyd| C_Tab|  | G_Ent|tdrlyd| Space|      | td_qw|
 //               `----------------------------------'  `----------------------------------'
             bindings = <
 // 0      1        2          3        4         5                           6        7          8        9        10       11
@@ -208,7 +211,7 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
 &kp LSFT  LSFT_SC  LALT__Q    LCTL__J  LGUI__K   &kp X    GUI_ENT  &kp C_PP  &kp B    RGUI__M    RCTL__W  LALT__V  RSFT__Z  &kp RSFT
 //                 50         51       52        53       54       55        56       57         58       59
 //                 LH4        LH3      LH2       LH1      LH0      RH0       RH1      RH2        RH3      RH4
-                   TD_RST     &none    &kp BKSP  TD_LLYD  CTL_TAB  GUI_ENT   TD_RLYD  &kp SPACE  &none    TD_QW
+                   TD_RST     XXXXXXX  &kp BKSP  TD_LLYD  CTL_TAB  GUI_ENT   TD_RLYD  &kp SPACE  XXXXXXX  TD_QW
             >;
 
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -228,14 +231,14 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
 // |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
 // | LShft| z Z  | x X  | c C  | v V  | b B  | G_Ent|  | Pl/Pa| n N  | m M  | , <  | . >  | / ?  | RShft|
 // `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
-//               |      |      | BkSp |slnavq| C_Tab|  | G_Ent|slpunq| Space|      | td_qw|
+//               |td_rst|      | BkSp |tdllyq| C_Tab|  | G_Ent|tdrlyq| Space|      | td_qw|
 //               `----------------------------------'  `----------------------------------'
             bindings = <
-&trans  &trans   &trans   &trans   &trans    &trans                     &trans  &trans     &trans   &trans   &trans    &kp RBRC
-&trans  &kp Q    &kp W    &kp E    &kp R     &kp T                      &kp Y   &kp U      &kp I    &kp O    &kp P     &kp LBRC
-&trans  &kp A    &kp S    &kp D    &kp F     &kp G                      &kp H   &kp J      &kp K    &kp L    &kp SEMI  &kp SQT
-&trans  LSFT__Z  LALT__X  LCTL__C  LGUI__V   &kp B    &trans   &trans   &kp N   RGUI__M    RCTL_CM  LALT_DT  RSFT_SH   &kp RSFT
-                 &none    &none    &trans    TD_LLYQ  &trans   &trans   TD_RLYQ &trans     &none    TD_QW
+_______  _______  _______  _______  _______   _______                    _______  _______  _______  _______  _______   &kp RBRC
+_______  &kp Q    &kp W    &kp E    &kp R     &kp T                      &kp Y    &kp U    &kp I    &kp O    &kp P     &kp LBRC
+_______  &kp A    &kp S    &kp D    &kp F     &kp G                      &kp H    &kp J    &kp K    &kp L    &kp SEMI  &kp SQT
+_______  LSFT__Z  LALT__X  LCTL__C  LGUI__V   &kp B    _______  _______  &kp N    RGUI__M  RCTL_CM  LALT_DT  RSFT_SH   &kp RSFT
+                  TD_RST   XXXXXXX  _______   TD_LLYQ  _______  _______  TD_RLYQ  _______  XXXXXXX  TD_QW
             >;
 
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -254,14 +257,14 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
 // |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
 // | LShft| Undo | Cut  | Copy | Paste|      | \    |  | /    | ~    | =    | +    | |    | ?    | RShft|
 // `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
-//               |      |      | Del  |monavd| G_Ent|  | C_Tab|slnavd| Space|      |      |
+//               |      |      | Del  |tdllyd| G_Ent|  | C_Tab|tdrlyd| Space|      |      |
 //               `----------------------------------'  `----------------------------------'
             bindings = <
-&none   &kp F1     &kp F2     &kp F3     &kp F4     &kp F5                      &kp F6     &kp F7     &kp F8     &kp F9    &kp F10    &kp F11
-&none   &none      &none      &none      &none      &none                       &kp GRAVE  &kp LBKT   &kp RBKT   &kp LBRC  &kp RBRC   &kp F12
-&trans  &none      &none      &none      &none      &kp BSLH                    &kp FSLH   &kp MINUS  &kp UNDER  &kp LPAR  &kp RPAR   CTL_ESC
-&trans  &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)  &none     &trans   &trans   &kp TILDE  &kp EQUAL  &kp PLUS   &kp PLUS  &kp QMARK  &trans
-                   &none      &none      &kp DEL    TD_LLYD   GUI_ENT  CTL_TAB  TD_RLYD    &kp SPC    &none      &none
+XXXXXXX  &kp F1     &kp F2     &kp F3     &kp F4     &kp F5                      &kp F6     &kp F7     &kp F8     &kp F9    &kp F10    &kp F11
+XXXXXXX  XXXXXXX    XXXXXXX    XXXXXXX    XXXXXXX    XXXXXXX                     &kp GRAVE  &kp LBKT   &kp RBKT   &kp LBRC  &kp RBRC   &kp F12
+_______  XXXXXXX    XXXXXXX    XXXXXXX    XXXXXXX    &kp BSLH                    &kp FSLH   &kp MINUS  &kp UNDER  &kp LPAR  &kp RPAR   CTL_ESC
+_______  &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)  XXXXXXX   _______  _______  &kp TILDE  &kp EQUAL  &kp PLUS   &kp PIPE  &kp QMARK  _______
+                    XXXXXXX    XXXXXXX    &kp DEL    TD_LLYD   GUI_ENT  CTL_TAB  TD_RLYD    &kp SPC    XXXXXXX    XXXXXXX
             >;
 
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -280,14 +283,14 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
 // |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
 // | LShft| Undo | Cut  | Copy | Paste|      | \    |  | [    | ~    | ]    | }    | |    | {    | RShft|
 // `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
-//               |      |      | Del  |monavq| G_Ent|  | C_Tab|slnavq| Space|      |      |
+//               |      |      | Del  |tdllyq| G_Ent|  | C_Tab|tdrlyq| Space|      |      |
 //               `----------------------------------'  `----------------------------------'
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                     &trans    &trans     &trans     &trans     &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans                     &trans    &kp MINUS  &kp EQUAL  &kp UNDER  &kp PLUS  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                     &kp LBKT  &kp SQT    &kp DQT    &kp LPAR   &kp RPAR  &trans
-&trans  &trans  &trans  &trans  &trans  &trans   &trans  &kp LBKT  &trans    &kp RBKT   &kp RBRC   &trans     &kp LBRC  &trans
-                &none   &none   &trans  TD_LLYQ  &trans  &trans    TD_RLYQ   &kp SPC    &none      &none
+_______  _______  _______  _______  _______  _______                     _______   _______    _______    _______    _______   _______
+_______  _______  _______  _______  _______  _______                     _______   &kp MINUS  &kp EQUAL  &kp UNDER  &kp PLUS  _______
+_______  _______  _______  _______  _______  _______                     &kp LBKT  &kp SQT    &kp DQT    &kp LPAR   &kp RPAR  _______
+_______  _______  _______  _______  _______  _______  _______  &kp LBKT  _______   &kp RBKT   &kp RBRC   _______    &kp LBRC  _______
+                  XXXXXXX  XXXXXXX  _______  TD_LLYQ  _______  _______   TD_RLYQ   &kp SPC    XXXXXXX    XXXXXXX
             >;
 
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -306,14 +309,14 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
 // |------+------+------+------+------+------+------.  ,------+------+------+------+------+------+------|
 // | LShft|      |      | Down | PgDn | Del  | Mute |  | Pl/Pa|      | Pl/Pa| Mute | Eject|      | RShft|
 // `-------------+------+------+------+------+------|  |------+------+------+------+------+------+------'
-//               |      |      | Space|slpund| G_Ent|  | C_Del|mopund| BkSp |      |      |
+//               |      |      | Space|tdllyd| G_Ent|  | C_Del|tdrlyd| BkSp |      |      |
 //               `----------------------------------'  `----------------------------------'
             bindings = <
-&none   &kp F1        &kp F2    &kp F3    &kp F4     &kp F5                             &kp F6   &kp F7      &kp F8        &kp F9        &kp F10     &kp F11
-&none   &kp LC(HOME)  &none     &kp UP    &kp PG_UP  &kp LC(END)                        &none    &kp C_PREV  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT  &kp F12
-&trans  &kp HOME      &kp LEFT  &kp DOWN  &kp RIGHT  &kp END                            &none    &kp LEFT    &kp DOWN      &kp UP        &kp RIGHT   &trans
-&trans  &none         &none     &kp DOWN  &kp PG_DN  &kp DEL      &kp C_MUTE  &kp C_PP  &none    &kp C_PP    &kp C_MUTE    &kp C_EJECT   &none       &trans
-                      &none     &none     &kp SPACE  TD_LLYD      GUI_ENT     CTL_DEL   TD_RLYD  &kp BSPC    &none         &none
+XXXXXXX  &kp F1        &kp F2    &kp F3    &kp F4     &kp F5                             &kp F6   &kp F7      &kp F8        &kp F9        &kp F10     &kp F11
+XXXXXXX  &kp LC(HOME)  XXXXXXX   &kp UP    &kp PG_UP  &kp LC(END)                        XXXXXXX  &kp C_PREV  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT  &kp F12
+_______  &kp HOME      &kp LEFT  &kp DOWN  &kp RIGHT  &kp END                            XXXXXXX  &kp LEFT    &kp DOWN      &kp UP        &kp RIGHT   _______
+_______  XXXXXXX       XXXXXXX   &kp DOWN  &kp PG_DN  &kp DEL      &kp C_MUTE  &kp C_PP  XXXXXXX  &kp C_PP    &kp C_MUTE    &kp C_EJECT   XXXXXXX     _______
+                       XXXXXXX   XXXXXXX   &kp SPACE  TD_LLYD      GUI_ENT     CTL_DEL   TD_RLYD  &kp BSPC    XXXXXXX       XXXXXXX
            >;
 
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -335,11 +338,11 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
 //               |      |      | Space|slpunq| G_Ent|  | C_Del|mopunq| BkSp |      |      |
 //               `----------------------------------'  `----------------------------------'
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                   &trans   &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                   &trans   &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                   &trans   &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans   &trans  &trans  &trans   &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  TD_LLYQ  &trans  &trans  TD_RLYQ  &trans  &trans  &trans
+_______  _______  _______  _______  _______  _______                    _______  _______  _______  _______  _______  _______
+_______  _______  _______  _______  _______  _______                    _______  _______  _______  _______  _______  _______
+_______  _______  _______  _______  _______  _______                    _______  _______  _______  _______  _______  _______
+_______  _______  _______  _______  _______  _______  _______  _______  _______  _______  _______  _______  _______  _______
+                  _______  _______  _______  TD_LLYQ  _______  _______  TD_RLYQ  _______  _______  _______
            >;
 
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -361,11 +364,11 @@ CTL_ESC   &kp A    &kp O      &kp E    &kp U     &kp I                       &kp
 //               |td_rst|      |      |      |RgbTog|  | NpEnt| Np 0 | Space|      |      |
 //               `----------------------------------'  `----------------------------------'
             bindings = <
-&bt BT_CLR         &bt BT_SEL 0       &bt BT_SEL 1      &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                                    &none      &kp KP_NLCK  &kp KP_SLASH  &kp KP_ASTERISK  &kp KP_MINUS  &kp SLCK
-&none              &rgb_ug RGB_HUD    &rgb_ug RGB_HUI   &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &rgb_ug RGB_EFF                                 &none      &kp KP_N7    &kp KP_N8     &kp KP_N9        &kp KP_PLUS   &kp PSCRN
-&ext_power EP_TOG  &rgb_ug RGB_BRD    &rgb_ug RGB_BRI   &rgb_ug RGB_SPD  &rgb_ug RGB_SPI  &rgb_ug RGB_EFR                                 &none      &kp KP_N4    &kp KP_N5     &kp KP_N6        &kp KP_EQUAL  &kp PAUSE_BREAK
-&bootloader        &ext_power EP_OFF  &ext_power EP_ON  &none            &none            &none            &soft_off        &soft_off     &kp KP_N0  &kp KP_N1    &kp KP_N2     &kp KP_N3        &kp KP_DOT    &bootloader
-                                      TD_RST            &none            &none            &none            &rgb_ug RGB_TOG  &kp KP_ENTER  &kp KP_N0  &kp BSPC     &none         &none
+&bt BT_CLR         &bt BT_SEL 0       &bt BT_SEL 1      &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                                    XXXXXXX    &kp KP_NLCK  &kp KP_SLASH  &kp KP_ASTERISK  &kp KP_MINUS  &kp SLCK
+XXXXXXX            &rgb_ug RGB_HUD    &rgb_ug RGB_HUI   &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &rgb_ug RGB_EFF                                 XXXXXXX    &kp KP_N7    &kp KP_N8     &kp KP_N9        &kp KP_PLUS   &kp PSCRN
+&ext_power EP_TOG  &rgb_ug RGB_BRD    &rgb_ug RGB_BRI   &rgb_ug RGB_SPD  &rgb_ug RGB_SPI  &rgb_ug RGB_EFR                                 XXXXXXX    &kp KP_N4    &kp KP_N5     &kp KP_N6        &kp KP_EQUAL  &kp PAUSE_BREAK
+&bootloader        &ext_power EP_OFF  &ext_power EP_ON  XXXXXXX          XXXXXXX          XXXXXXX          &soft_off        &soft_off     &kp KP_N0  &kp KP_N1    &kp KP_N2     &kp KP_N3        &kp KP_DOT    &bootloader
+                                      TD_RST            XXXXXXX          XXXXXXX          XXXXXXX          &rgb_ug RGB_TOG  &kp KP_ENTER  &kp KP_N0  &kp BSPC     XXXXXXX       XXXXXXX
             >;
         };
 /* default sofle keymap
